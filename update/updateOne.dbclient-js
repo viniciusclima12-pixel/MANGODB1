@@ -1,0 +1,33 @@
+// Active: 1774631785030@@viniciuslima0850_db_user@null@Aula
+db("Aula")
+.collection("personagens")
+.updateOne(
+    { nome: "Nami" },
+{
+    $set: {
+    fruta: "",
+    },
+ },
+);
+
+db("Aula")
+.collection("personagens")
+.updateOne(
+    { idade: 19 },
+    {
+        $inc: {
+         idade: 1,
+        },
+    },
+);
+
+db("Aula")
+.collection("personagens")
+.findOneAndUpdate(
+    { idade: 20},
+    {
+        $inc: {
+            idade: -1
+        }
+    },
+);

@@ -1,0 +1,37 @@
+// Active: 1774631785030@@viniciuslima0850_db_user@null@Aula
+db("Aula").collection("personagens").aggregate([
+{
+ $match:  {
+    origem_id: { $exists: true },
+    frutas_ids: {
+    $exists: true,
+    $not: {$size: 0 },
+
+    },
+ },
+},
+  
+
+    
+{
+    $lookup:{
+        from: "origem",
+        localField: "origem_id",
+        foreignField: "_id",
+        as: "origem",
+    },
+},
+
+{
+    $lookup: {
+        from: "frutas",
+        localField: "frutas_ids",
+        foreignField: "_id",
+        as: "frutas",
+
+    },
+},
+{
+    $unset: ["origem id", "frutas ids"],
+},
+]);

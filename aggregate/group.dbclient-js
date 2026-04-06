@@ -1,0 +1,7 @@
+// Active: 1774631785030@@viniciuslima0850_db_user@null@Aula
+db("Aula").collection("personagens").aggregate([
+  {
+    $group: {
+
+    }
+}]);

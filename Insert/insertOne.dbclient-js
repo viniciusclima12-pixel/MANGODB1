@@ -1,0 +1,26 @@
+// Active: 1774631785030@@viniciuslima0850_db_user@null@Aula
+db("aula")
+  .collection("personagens")
+  .insertMany([
+    {
+      nome: "Big Mom",
+      fruta: "Soul",
+      idade: 68,
+    },
+    {
+      nome: "Kaido",
+      fruta: "Dragon",
+      idade: 59,
+    },
+  ]);
+
+  db("Aula")
+  .collection("personagens")
+  .insertOne({
+    nome: "Marshall D. Teach",
+    frutas_ids: [
+      ObjectID('69cc0ad0d3260daab497e46c'),
+      ObjectID('69cc0ad0d3260daab497e46d'),
+    ],
+    origem_id: ObjectID('69cc09ced3260daab497e461')
+  });

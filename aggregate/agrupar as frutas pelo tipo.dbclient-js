@@ -1,0 +1,34 @@
+﻿// Active: 1774631785030@@viniciuslima0850_db_user@null@Aula
+db("Aula").collection("frutas").aggregate([
+    {
+        $lookup: {
+            from: "personagens",
+            localField: "_id",
+            foreignField: "frutas_ids",
+            as: "personagens",
+        }
+    },
+    { $unwind: "$personagens" },
+    {
+        $group: {
+            _id: "$tipo",
+            frutas: { $addToSet: "$nome" }, 
+            personagens: { $push: "$personagens" } 
+        },
+    },
+    {
+        $set: {
+            frutas: { $sortArray: { input: "$frutas", sortBy: 1 } },
+            personagens: { $sortArray: { input: "$personagens", sortBy: { nome: 1 } } },
+        },
+    },
+    
+    {
+        $sort: {
+            _id:1
+        },
+    },
+
+        
+    
+])

@@ -1,0 +1,16 @@
+// Active: 1774631785030@@viniciuslima0850_db_user@null@Aula
+db("Aula").collection("frutas").aggregate([
+
+    {$lookup: {
+        from: "personagens",
+        localField: "_id",
+        foreignField: "frutas_ids",
+        as: "personagens",
+    },
+},
+{
+    $unwind: "$personagens",
+},
+]);
+
+

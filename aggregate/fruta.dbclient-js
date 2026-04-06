@@ -1,0 +1,26 @@
+// Active: 1774631785030@@viniciuslima0850_db_user@null@Aula
+db("Aula").collection("personagens").aggregate([
+  {
+    $group: {
+      _id: {
+        $cond: {
+          if: {
+            $or: [
+              { $eq: ["$fruta", ""] },
+              { $eq: ["$fruta", null] },
+              { $eq: [ {$ifNull: ["$fruta", null]} , null] }
+            ] },
+          then: "Sem fruta",
+          else: "Usuário de fruta"
+        } 
+      },
+      mediaIdade: {
+        $avg: "$idade"
+      },
+      total: {
+        $sum:1
+      },
+      personagens: { $push: "$$ROOT" }
+    }
+  }
+])
